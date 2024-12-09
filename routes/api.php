@@ -20,7 +20,7 @@ Route::get('/hola', function () {
 Route::post('/signup', [AuthController::class, 'register']);
 Route::post('/signin', [AuthController::class, 'login']);
 
-Route::get('games', [GameController::class, 'index'])->middleware('auth:sanctum');
+Route::get('games', [GameController::class, 'index']);
 Route::get('games/{id}', [GameController::class, 'show'])->middleware('auth:sanctum');
 Route::post('games', [GameController::class, 'store'])->middleware('auth:sanctum');
 Route::put('games/{id}', [GameController::class, 'update'])->middleware('auth:sanctum');
