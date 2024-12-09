@@ -11,14 +11,17 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/hola', function () {
-    return 'Hola mundo';
+    return "{
+        'Estudiante_1': 'Juan Camilo Valencia Hincapie',
+        'Estudiante_2': 'Kevin Santiago Parra Romero'
+    }";
 });
 
 Route::post('/signup', [AuthController::class, 'register']);
 Route::post('/signin', [AuthController::class, 'login']);
 
-Route::get('games', [GameController::class, 'index']);
-Route::get('games/{id}', [GameController::class, 'show']);
-Route::post('games', [GameController::class, 'store']);
-Route::put('games/{id}', [GameController::class, 'update']);
-Route::delete('games/{id}', [GameController::class, 'destroy']);
+Route::get('games', [GameController::class, 'index'])->middleware('auth:sanctum');
+Route::get('games/{id}', [GameController::class, 'show'])->middleware('auth:sanctum');
+Route::post('games', [GameController::class, 'store'])->middleware('auth:sanctum');
+Route::put('games/{id}', [GameController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('games/{id}', [GameController::class, 'destroy'])->middleware('auth:sanctum');
